@@ -129,7 +129,9 @@ extension MainView : UITableViewDataSource
         case temperatureMax
         case temperatureMin
         case sunrise
-        case sunset
+        //  case sunset // Some Problem in service response : Not yielding proper value
+        case latitude
+        case longitude
         case degree
         case speed
         
@@ -172,7 +174,7 @@ extension MainView : UITableViewDataSource
             case .pressure:
                 
                  // Read the Main Object from Response, convert to string and append inHg.
-                cell.valueLabel?.text = "\(weatherViewModel.searchResults?.main?.pressure?.toInt() ?? 0) inHg"
+                cell.valueLabel?.text = "\(weatherViewModel.searchResults?.main?.pressure?.toInt() ?? 0) in mmHg"
                 
                 cell.keyLabel?.text =  "\(wDisplayRows.pressure)".capitalized(with: nil)
             
@@ -197,14 +199,14 @@ extension MainView : UITableViewDataSource
                 
                 cell.keyLabel?.text =  "\(wDisplayRows.temperatureMin)".capitalized(with: nil)
             
-            case .sunset:
-                
-                 // Read the Sun Object from Response, convert to string
-                cell.valueLabel?.text = weatherViewModel.searchResults?.sun?.sunset?.toDateString().description
-                cell.keyLabel?.text =  "\(wDisplayRows.sunset)".capitalized(with: nil)
+//            case .sunset:
+//                
+//                 // Read the Sun Object from Response, convert to string
+//                cell.valueLabel?.text = weatherViewModel.searchResults?.sun?.sunset?.toDateString().description
+//                cell.keyLabel?.text =  "\(wDisplayRows.sunset)".capitalized(with: nil)
             
             case .sunrise:
-                
+
                  // Read the Sun Object from Response, convert to DateString
                 cell.valueLabel?.text = weatherViewModel.searchResults?.sun?.sunrise?.toDateString().description
                 cell.keyLabel?.text =  "\(wDisplayRows.sunrise)".capitalized(with: nil)
@@ -214,7 +216,18 @@ extension MainView : UITableViewDataSource
                 // Read the Wind Object from Response, convert to string
                 cell.valueLabel?.text = weatherViewModel.searchResults?.wind?.speed?.toString()
                 cell.keyLabel?.text =  "Wind \(wDisplayRows.speed)".capitalized(with: nil)
+            
+            case .latitude:
                 
+                // Read the Coordinate Object from Response, convert to string
+                cell.valueLabel?.text = weatherViewModel.searchResults?.coordinates?.latitude.toString()
+                cell.keyLabel?.text =  "\(wDisplayRows.latitude)".capitalized(with: nil)
+            
+            case .longitude:
+                
+                // Read the Coordinate Object from Response, convert to string
+                cell.valueLabel?.text = weatherViewModel.searchResults?.coordinates?.longitude.toString()
+                cell.keyLabel?.text =  "\(wDisplayRows.longitude)".capitalized(with: nil)
             //Switch Case is Exhaustive - No Default is required.
             
             }

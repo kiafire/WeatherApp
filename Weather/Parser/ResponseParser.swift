@@ -21,6 +21,9 @@ import Foundation
 final class ResponseParser{
     
     //Parses the Coordinates from the coordinates array in response
+    //Parameters -
+    //Input :JSON dictionary <String,Any>
+    //Output : WCordinateModel Model
     static func parseCoordinateResponseModel (jsonDict: JSONDictionary) -> WCordinateModel?
     {
         //Check if the response dictionary is empty while converting
@@ -47,6 +50,9 @@ final class ResponseParser{
     }
     
     //Parses the Main WeatherResponseModel from the Weather array in response
+    //Parameters -
+    //Input :JSON dictionary <String,Any>
+    //Output : WeatherResponseModel Model
     static func parseMainWeatherResponseModel (jsonDict: JSONDictionary) -> WeatherResponseModel?
     {
         //Check if the response dictionary is empty while converting
@@ -73,6 +79,9 @@ final class ResponseParser{
     }
     
     //Parses the WindResponseModel from the Wind array in response
+    //Parameters -
+    //Input :JSON dictionary <String,Any>
+    //Output : WWindModel Model
     static func parseWindResponseModel (jsonDict: JSONDictionary) -> WWindModel?
     {
         //Check if the response dictionary is empty while converting
@@ -92,7 +101,10 @@ final class ResponseParser{
         
     }
     
-    //Parses the WindResponseModel from the Wind array in response
+    //Parses the Sun ResponseModel from the Wind array in response
+    //Parameters -
+    //Input :JSON dictionary <String,Any>
+    //Output : WSunModel Model
     static func parseSunResponseModel (jsonDict: JSONDictionary) -> WSunModel?
     {
         //Check if the response dictionary is empty while converting
@@ -113,6 +125,9 @@ final class ResponseParser{
     }
     
     //Parses the WeatherStatus from the coordinates array in response
+    //Parameters -
+    //Input :JSON dictionary <String,Any>
+    //Output : WCoordinmate Model
     static func parseWeatherStatusResponseModel (jsonDict: Array<JSONDictionary>) -> WStatusModel?
     {
         //Check if the response dictionary is empty while converting
@@ -141,6 +156,9 @@ final class ResponseParser{
         
     }
     
+    //Parameters - Mapper for Main JSON Dictionary to Custom Object creatiom
+    //Input :JSON dictionary <String,Any>
+    //Output : WCoordinmate Model
     static func parseWeatherResponseModel (jsonDict: JSONDictionary) -> WResponseModel?
     {
         guard  !jsonDict.isEmpty else {

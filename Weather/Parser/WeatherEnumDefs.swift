@@ -8,7 +8,9 @@
 
 import UIKit
 
-// This Enum will be used to Parse data from JSON Dictionary,. This is a helper class to Response Parser
+// This Enum will be used to Parse data from JSON Dictionary,
+//. This is a helper class to Response Parser
+//  Raw Value is updated for keys whose response keys are logically not meaningful
 enum responeParser : String
 {
     case coordinate = "coord"
