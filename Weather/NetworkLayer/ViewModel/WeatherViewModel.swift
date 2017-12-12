@@ -74,37 +74,19 @@ class WeatherViewModel {
        
         service.invokeWeatherService(withRequestModel: searchModel!) { resultsDic, errorMessage in
 
-    
-            guard let rArray = resultsDic["main"] as? JSONDictionary else {
+            // Validate if results dict is empty, May happend when the JSON Serialization is buggy.
+            
+            guard !resultsDic.isEmpty else {
                 self.errorMessage += "Dictionary does not contain required keys\n"
                 return
             }
             
+            //Invoke the P:arser to parse the JSON Dict to Objects
             let searchResult = ResponseParser.parseWeatherResponseModel(jsonDict: resultsDic)
-/* var searchResult = WeatherResponseModel()
-            
-            for res in (rArray as? Dictionary<String,Double>)! {
-                
-                switch(res.key)
-                {
-                    case "humidity":
-                        searchResult.humidity = res.value
-                    case "temp_min":
-                         searchResult.minimumTemperature  = res.value
-                    case "temp_max":
-                         searchResult.maximumTemperature = res.value
-                    case "temp":
-                        searchResult.temperature = res.value
-                    case "pressure":
-                        searchResult.pressure = res.value
-                    default:
-                    print("Other Elements - Not interested for now")
-                }
-               
-            }
- */
-           self.searchResults = searchResult
-            
+
+            self.searchResults = searchResult
+           
+            //Update the UI on main thread
             DispatchQueue.main.async {
                 completion(self.searchResults!, self.errorMessage)
             }

@@ -16,6 +16,7 @@ import Foundation
  
  */
 
+/*This is a helper class to parse JSON response */
 
 final class ResponseParser{
     

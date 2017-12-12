@@ -10,6 +10,12 @@ import UIKit
 
 class  WeatherTableViewCell: UITableViewCell {
     
+    // This is a custom Cell to display Key Value pairs on Weather Table
+    // Key : Temeperatyre, Humidity Etc
+    //Value : The relevant Values fetched.
+    // All Properties are customized on story board.
+    
     @IBOutlet weak var keyLabel : UILabel!
+    
     @IBOutlet weak var valueLabel : UILabel!
 }

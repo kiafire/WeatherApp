@@ -18,20 +18,23 @@ protocol WeatherProtocol :class
 
 class MainView: UIView {
 
+    //IBOutlets for Main View UI Storyboard elements. //
+   
     @IBOutlet weak var citySearchBar: UISearchBar?
+    
     @IBOutlet weak var weatherTableView: UITableView?
+    
     @IBOutlet weak var weatehrImage : FTImageView?
     
     @IBOutlet weak var cityName :UILabel!
     
     @IBOutlet weak var weatherDesc :UILabel!
-    @IBOutlet weak var maxValue :UILabel!
-    @IBOutlet weak var pressureValue :UILabel!
-    @IBOutlet weak var humidityValue :UILabel!
-    @IBOutlet weak var temperatureValue :UILabel!
+    
+    // Delegate to handle  fetching data
     
     weak var wetherDelegate : WeatherProtocol?
     
+    //View Model manipulates the data for display.
     var weatherViewModel:WeatherViewModel
     
     override init(frame: CGRect) {
@@ -45,7 +48,7 @@ class MainView: UIView {
         
     }
     
-    
+    // Preliminary setup of ViewDisplay
     
     func setUpMyView() {
        
@@ -87,6 +90,7 @@ class MainView: UIView {
     }
 }
 
+//Mark SearchBar Delegates
 
 extension MainView:UISearchBarDelegate
 {
@@ -110,6 +114,7 @@ extension MainView:UISearchBarDelegate
     }
 }
 
+//MArk TableView Delegates
 
 extension MainView : UITableViewDataSource
 {
@@ -200,7 +205,7 @@ extension MainView : UITableViewDataSource
             
             case .sunrise:
                 
-                 // Read the Sun Object from Response, convert to string
+                 // Read the Sun Object from Response, convert to DateString
                 cell.valueLabel?.text = weatherViewModel.searchResults?.sun?.sunrise?.toDateString().description
                 cell.keyLabel?.text =  "\(wDisplayRows.sunrise)".capitalized(with: nil)
             
