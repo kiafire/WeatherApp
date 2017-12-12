@@ -55,10 +55,15 @@ extension ViewController : WeatherProtocol
         
     }
     
-    func  getCurrentWeatherImage(withURL : URL, toImage image: FTImageView)
+    func  getCurrentWeatherImage(withURL : URL?, toImage image: FTImageView)
     {
-        //To Do URL is not parsed yet, so right now hard coded tp download a temporary image always :(
-        image.downloadedFrom(url: withURL);
+        guard let downloadURL = withURL else
+        {
+            print("Error :Download was unsuccessful, URL was nil")
+            return;
+        }
+        
+        image.downloadedFrom(url: downloadURL);
     }
     
     func showAlert(WithMessage errorMessage:String)

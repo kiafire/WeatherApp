@@ -15,7 +15,7 @@ class WeatherViewModel {
     var searchModel :WeatherRequestModel?
     
     //Response Model
-    var searchResults:WeatherResponseModel?
+    var searchResults:WResponseModel?
     
     //TypeAlias for a expected prsing pattern
     typealias JSONDictionary = [String: Any]
@@ -52,7 +52,7 @@ class WeatherViewModel {
     
     func setSearchString(searchString:String){
        //If Model is unavailable create a new one
-        guard let model = searchModel else {
+        guard searchModel != nil else {
             searchModel = WeatherRequestModel(with: searchString)
             return
         }
@@ -61,14 +61,15 @@ class WeatherViewModel {
     
     func setEntityUnit (entityUnit:String){
         
-     /*   guard let model = searchModel else {
+        //If Model is unavailable create a new one
+        guard searchModel != nil else {
             searchModel = WeatherRequestModel(with: searchString)
             return
-        }*/
+        }
         searchModel?.unit = entityUnit
     }
     
-    func invokeWeatherService(completion:@escaping(WeatherResponseModel,String)->())
+    func invokeWeatherService(completion:@escaping(WResponseModel,String)->())
     {
        
         service.invokeWeatherService(withRequestModel: searchModel!) { resultsDic, errorMessage in
@@ -79,10 +80,8 @@ class WeatherViewModel {
                 return
             }
             
-            //var wResModel = WeatherResponseModel()
-           
-
-            var searchResult = WeatherResponseModel()
+            let searchResult = ResponseParser.parseWeatherResponseModel(jsonDict: resultsDic)
+/* var searchResult = WeatherResponseModel()
             
             for res in (rArray as? Dictionary<String,Double>)! {
                 
@@ -103,8 +102,9 @@ class WeatherViewModel {
                 }
                
             }
+ */
            self.searchResults = searchResult
-
+            
             DispatchQueue.main.async {
                 completion(self.searchResults!, self.errorMessage)
             }

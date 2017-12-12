@@ -8,15 +8,15 @@
 
 struct WeatherResponseModel {
   
-    var temperature: Double
+    var temperature: Double?
     /// is of type Double, Atmospheric pressure (on the sea level, if there is no sea_level or grnd_level data), hPa
-    var pressure: Double
+    var pressure: Double?
     /// is of type Double, Humidity, %
-    var humidity: Double
+    var humidity: Double?
     /// is of type Double, Minimum temperature at the moment. This is deviation from current temp that is possible for large cities and megalopolises geographically expanded (use these parameter optionally). Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
-    var minimumTemperature: Double
+    var minimumTemperature: Double?
     /// is of type Double, Maximum temperature at the moment. This is deviation from current temp that is possible for large cities and megalopolises geographically expanded (use these parameter optionally). Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
-    var maximumTemperature: Double
+    var maximumTemperature: Double?
     
     /// Initializer of WeatherMainDetails
     ///
@@ -26,7 +26,7 @@ struct WeatherResponseModel {
     ///   - humidity: is of tyoe Double, gets the humidity of the location
     ///   - maximumTemperature: is of type Double, gets the max temperature of the location
     ///   - minimumTemperature: is of type Double, gets the min temperature of the location
-    init(with temperature: Double, pressure: Double, humidity: Double, maximumTemperature: Double, minimumTemperature: Double) {
+    init(temperature: Double?, pressure: Double?, humidity: Double?, maximumTemperature: Double?, minimumTemperature: Double?) {
         self.temperature = temperature
         self.pressure = pressure
         self.humidity = humidity
@@ -35,11 +35,6 @@ struct WeatherResponseModel {
     }
     
     init() {
-        self.temperature = 0.0
-        self.pressure = 0.0
-        self.humidity = 0.0
-        self.maximumTemperature = 0.0
-        self.minimumTemperature = 0.0
+
     }
-    
 }

@@ -11,12 +11,12 @@ import Foundation
 struct WSunModel {
     
     //Double type, describes the Sunrise time in GMT
-    var sunrise :Double
+    var sunrise :Double?
     
     //Double type, describes the Sunset time in GMT
-    var sunset :Double
+    var sunset :Double?
     
-    init(sunrise : Double, sunset : Double) {
+    init(sunrise : Double?, sunset : Double?) {
         
         self.sunrise = sunrise
         

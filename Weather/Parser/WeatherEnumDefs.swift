@@ -21,6 +21,7 @@ enum responeParser : String
     case icon
     
     case system = "sys"
+    case some
     case sunrise
     case sunset
     

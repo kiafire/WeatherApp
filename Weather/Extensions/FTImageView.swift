@@ -35,15 +35,19 @@ extension FTImageView {
                 let data = data, error == nil,
                 let image = UIImage(data: data)
                 else {
-                    //If image download fails ,, default it to a Offline Image
+                    //If image download fails , default it to a Offline Image
                     self.image = UIImage.init(named: "offlineImage")
                     comletionHandler?()
                     return
             }
             
+            weak var weakSelf = self
             //Update view's image in main thread
             DispatchQueue.main.async() { () -> Void in
-                self.image = image
+            
+                //TODO : // Resize the image before displaying
+                weakSelf?.image = image
+                
                 //After Image download compeltion
                 comletionHandler?()
             }

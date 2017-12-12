@@ -51,7 +51,7 @@ final class ResponseParser{
         //Check if the response dictionary is empty while converting
         guard let jsonDict = jsonDict as? Dictionary<String, Double>, !jsonDict.isEmpty else {
             
-            print("Error : No Coordinate Received")
+            print("Error : No Main Weather Response Received")
             return nil
             
         }
@@ -76,7 +76,7 @@ final class ResponseParser{
     {
         //Check if the response dictionary is empty while converting
         guard let jsonDict = jsonDict as? Dictionary<String, Double>, !jsonDict.isEmpty else {
-            print("Error : No Coordinate Received")
+            print("Error : No Wind Response Received")
             return nil
         }
         
@@ -95,8 +95,8 @@ final class ResponseParser{
     static func parseSunResponseModel (jsonDict: JSONDictionary) -> WSunModel?
     {
         //Check if the response dictionary is empty while converting
-        guard let jsonDict = jsonDict as? Dictionary<String, Double>, !jsonDict.isEmpty else {
-            print("Error : No Coordinate Received")
+        guard !jsonDict.isEmpty else {
+            print("Error : No Sun Response Model Received")
             return nil
         }
         
@@ -104,8 +104,8 @@ final class ResponseParser{
         // Generates the model - WWindModel and returns it back to response
         // Service May not return 1 or more response, parse it individually. All properties are optional
         
-        let respCordinateModel = WSunModel.init(sunrise: jsonDict[responeParser.sunrise.rawValue],
-                                                sunset: jsonDict[responeParser.sunset.rawValue])
+        let respCordinateModel = WSunModel.init(sunrise: jsonDict[responeParser.sunrise.rawValue] as? Double,
+                                                sunset: jsonDict[responeParser.sunset.rawValue] as? Double )
         
         return respCordinateModel
         
@@ -116,7 +116,7 @@ final class ResponseParser{
     {
         //Check if the response dictionary is empty while converting
         guard !jsonDict.isEmpty else {
-            print("Error : No Coordinate Received")
+            print("Error : No Weather Status Received")
             return nil
         }
         
@@ -161,8 +161,10 @@ final class ResponseParser{
         //Maps the wind details to wind Model
         let wind : WWindModel? = parseWindResponseModel(jsonDict: jsonDict[responeParser.wind.rawValue] as! JSONDictionary)
         
+        let sunDict : JSONDictionary = jsonDict[responeParser.system.rawValue] as! JSONDictionary
+        
         //Maps the Sun details to SunModel
-        let sun : WSunModel? = parseSunResponseModel(jsonDict: jsonDict[responeParser.system.rawValue] as! JSONDictionary)
+        let sun : WSunModel? = parseSunResponseModel(jsonDict:sunDict as! JSONDictionary)
         
         //String, Maps the city name
         let name :String? = jsonDict[responeParser.name.rawValue] as? String

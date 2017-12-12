@@ -11,28 +11,38 @@ import Foundation
 struct WResponseModel {
 
     // Maps the coordinates to WCoordinateModel
-    var coordinates : WCordinateModel
+    var coordinates : WCordinateModel?
     
     //Maps the weather status to Weather Status Model
-    var weather : WStatusModel
+    var weatherStatus : WStatusModel?
     
     //Maps the temperature and related details to WeatherResponseModel
-    var main : WeatherResponseModel
+    var main : WeatherResponseModel?
     
     //Maps the wind details to wind Model
-    var wind : WWindModel
+    var wind : WWindModel?
     
     //Maps the Sun details to SunModel
-    var sun : WSunModel
+    var sun : WSunModel?
     
     //String, Maps the city name
-    var name :String
+    var name :String?
     
-    init(coordinates : WCordinateModel, weather : WStatusModel, main : WeatherResponseModel, wind:WWindModel, sun : WSunModel, name : String) {
+    
+    /// Initializer of WResponseModel Model
+    /// Parameters :
+    ///- coordinates : Maps the coordinates to WCoordinateModel
+    ///- weather : Maps the weather status to Weather Status Model
+    ///-  main : Maps to WeatherResponseModel with temperature and main details
+    ///- wind : Maps the wind status to WWindStatus Model
+    ///-  sun : Maps to WSun status model and provides sun stats
+    ///-  name: Provides the name of the searched city
+    
+    init(coordinates : WCordinateModel?, weather : WStatusModel?, main : WeatherResponseModel?, wind:WWindModel?, sun : WSunModel?, name : String?) {
         
         self.coordinates = coordinates
         
-        self.weather = weather
+        self.weatherStatus = weather
         
         self.main = main
         

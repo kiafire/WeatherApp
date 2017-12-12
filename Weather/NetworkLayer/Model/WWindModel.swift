@@ -11,9 +11,15 @@ import Foundation
 struct WWindModel {
     
     //Double type, describes the speed of the cloud movement
-    var speed :Double
+    var speed : Double?
     
     //Double type, describes the degree of the cloud mpvement
-    var degree :Double
-    
+    var degree :Double?
+ 
+    init(speed : Double?, degree: Double?) {
+        
+        self.speed = speed
+        
+        self.degree = degree
+    }
 }
