@@ -10,17 +10,21 @@ import UIKit
 
 enum responeParser : String
 {
+    case coordinate = "coord"
     case latitude = "lat"
     case longitude = "lon"
     
+    case weather
     case id
     case main
     case description
     case icon
     
+    case system = "sys"
     case sunrise
     case sunset
     
+    case wind
     case speed
     case degree = "deg"
     
@@ -29,6 +33,8 @@ enum responeParser : String
     case pressure
     case temperatureMax = "temp_max"
     case temperatureMin = "temp_min"
+    
+    case name
     
     
 }

@@ -10,14 +10,14 @@ import Foundation
 
 // This class handles all the service call invocations and error handloing mechanisms
 
+//Creating a typeAlias to parese the response received as key value pairs
+typealias JSONDictionary = [String:Any]
+
 class WeatherService
 {
     
     //Error Message to disply error
     var  errorMessage = ""
-    
-    //Creating a typeAlias to parese the response received as key value pairs
-    typealias JSONDictionary = [String:Any]
     
     func invokeWeatherService (withRequestModel requestModel: WeatherRequestModel, completion:@escaping(Dictionary<String,Any>,String)->Void)
     {
